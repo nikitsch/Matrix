@@ -21,14 +21,29 @@ for (let i = 0; i < columnsCount; i++) {
 
 context.font = `bold ${FONT_SIZE}px monospace`;
 
-function animate() {
+function animateMatrix() {
   context.fillStyle = "rgba(0, 0, 0, 0.06)";
   context.fillRect(0, 0, canvas.width, canvas.height);
 
   context.fillStyle = "green";
   columns.forEach(column => column.darwSymbol());
 
-  setTimeout(() => requestAnimationFrame(animate), 50);
+  setTimeout(() => requestAnimationFrame(animateMatrix), 50);
 }
 
-animate();
+animateMatrix();
+
+let dots = 0;
+function animateWakeUp() {
+  context.fillStyle = 'black';
+  context.fillRect(0, 0, canvas.width, canvas.height);
+  
+  const text = 'Wake up, Neo' + '.'.repeat(dots);
+  context.fillStyle = 'green';
+  context.fillText(text, 40, 50);
+  
+  dots = (dots + 1) % 4;
+  setTimeout(() => requestAnimationFrame(animateWakeUp), 600);
+}
+
+// animateWakeUp();
